@@ -76,7 +76,7 @@ sub togglecase {
     my %args = @_;
 
     while (<>) {
-        s/(\p{Lu}|\p{Ll})/$1 =~ /\p{Lu}/ ? lc($1) : uc($1)/eg;
+        s{(?:(\p{Lu})|(\p{Ll}))}{lc($1 // "") . uc($2 // "")}eg;
         print;
     }
 
